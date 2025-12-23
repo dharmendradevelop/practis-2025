@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AJAX Form Submit</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    form {
+      width: 300px;
+      padding: 20px;
+      background: #f2f2f2;
+      border-radius: 10px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>AJAX Form Submit</h2>
+
+  <!-- FORM -->
+  <form id="myForm">
+    <input type="text" id="name" name="name" placeholder="Enter your name" required />
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="message"></div>
+
+  <script>
+    // -----------------------------
+    //   FAKE SERVER (DEMO ONLY)
+    //   Simulates PHP/Node backend
+    // -----------------------------
+    function fakeServer(data, callback) {
+      setTimeout(function () {
+        callback({ status: "success", received: data });
+      }, 700);
+    }
+
+    // -----------------------------
+    //     AJAX FORM SUBMIT
+    // -----------------------------
+    document.getElementById("myForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nameValue = document.getElementById("name").value;
+
+      // Data to send
+      const formData = "name=" + encodeURIComponent(nameValue);
+
+      // AJAX REQUEST (XMLHttpRequest)
+      const xhr = new XMLHttpRequest();
+
+      // ❗ IMPORTANT: Replace with your backend URL
+      // xhr.open("POST", "process.php", true);
+      xhr.open("POST", "https://fake-server.local/submit", true); // dummy URL
+
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      // DEFINE AJAX RESPONSE
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Response will be shown here
+          document.getElementById("message").innerHTML =
+            "Server Response: " + xhr.responseText;
+        }
+      };
+
+      // Since this is demo, call fake server instead of real server
+      fakeServer(formData, function (serverResponse) {
+        document.getElementById("message").innerHTML =
+          "Form submitted using AJAX!<br>Received: " +
+          nameValue;
+      });
+
+      // SEND ACTUAL AJAX
+      xhr.send(formData);
+
+      // Reset form
+      document.getElementById("myForm").reset();
+    });
+  </script>
+
+</body>
+</html>

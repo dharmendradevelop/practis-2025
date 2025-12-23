@@ -1,0 +1,23 @@
+Key Aspects of DOM Manipulation:
+Selecting Elements: Before manipulating an element, it must be selected. Common methods for selecting elements include:
+document.getElementById(): Selects an element by its unique ID.
+document.getElementsByClassName(): Selects all elements with a specified class name.
+document.getElementsByTagName(): Selects all elements of a specified tag name.
+document.querySelector(): Selects the first element matching a given CSS selector.
+document.querySelectorAll(): Selects all elements matching a given CSS selector.
+Modifying Content: Once an element is selected, its content can be altered using properties like:
+element.textContent: Changes the text content of an element.
+element.innerHTML: Changes the HTML content (including tags) within an element.
+Modifying Attributes: HTML attributes can be changed or added using:
+element.setAttribute(name, value): Sets the value of a specified attribute.
+element.getAttribute(name): Retrieves the value of a specified attribute.
+element.removeAttribute(name): Removes a specified attribute.
+Modifying Style: The visual appearance of elements can be changed by accessing the style property:
+element.style.propertyName = 'value': Sets a specific CSS property.
+Adding and Removing Elements:
+document.createElement(tagName): Creates a new HTML element.
+parentNode.appendChild(childNode): Adds a child element to a parent.
+parentNode.removeChild(childNode): Removes a child element from a parent.
+parentNode.insertBefore(newNode, referenceNode): Inserts a new element before a reference element.
+Event Handling: Making web pages interactive involves adding event listeners to elements, which trigger functions when specific events occur (e.g., clicks, keypresses):
+element.addEventListener(event, function): Attaches an event listener to an element.

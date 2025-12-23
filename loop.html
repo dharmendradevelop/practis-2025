@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop</title>
+</head>
+<body>
+ <div class="loop">
+    <p>
+        <span onclick="loop_list();" style="cursor: pointer;"> Check It</span>
+        <br/>
+        <span></span>
+        <span></span>
+    </p>
+    <p>
+        <span></span>
+        <span></span>
+        <span></span>
+    </p>
+ </div>   
+ <script>
+  var sp= document.getElementsByTagName("span");
+//   alert(sp);
+  function loop_list(){
+    var i =1;
+  for(i; i<sp.length; i++){
+ let de=document.createElement("b");
+    de.textContent=" Some text, "; 
+    sp[i].append(de);
+}
+
+  }  
+ </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Object </title>
+</head>
+<body>
+    <div class="showText">
+        <p class="a"></p>
+        <p class="b"></p>
+        <p class="c"></p>
+        <p class="d"></p>
+    </div>
+
+<script>
+
+// Create an Object first Way
+var person = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 50,
+  eyeColor: "green"
+};
+document.getElementsByClassName("a")[0].innerHTML=person.firstName;
+// Create an Object second Way
+var person = {};
+// Add Properties
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "Yellow";
+document.getElementsByClassName("b")[0].innerHTML=person["age"];
+// Create an Object Third Way
+var person = new Object();
+// Add Properties
+person.firstName = "John";
+person.lastName = "Doe";
+person.age = 50;
+person.eyeColor = "blue";
+document.getElementsByClassName("c")[0].innerHTML=person.eyeColor;
+
+</script> 
+
+</body>
+</html>

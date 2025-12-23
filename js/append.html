@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Append Content</title>
+  </head>
+  <body>
+    <div class="prt">
+      <h3 id="h_3"><b>Have a append text ?</b></h3>
+    </div>
+    <script>
+      var d = document.querySelector("#h_3");
+	 let s= d.insertAdjacentHTML('beforeend', "<span class='dsr'>Hwr </span>");
+      console.log("Test = " + d);
+    </script>
+  </body>
+</html>

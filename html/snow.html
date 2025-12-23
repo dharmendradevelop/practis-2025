@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Christmas Snowfall</title>
+
+  <style>
+    body {
+      background: #001;
+      overflow: hidden;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .snow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .snowflake {
+      position: absolute;
+      color: white;
+      font-size: 12px;
+      opacity: 0.9;
+      user-select: none;
+      pointer-events: none;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0.8;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="snow"></div>
+
+  <script>
+    const snowContainer = document.querySelector(".snow");
+    const count = 120;
+
+    for (let i = 0; i < count; i++) {
+      const flake = document.createElement("div");
+      flake.classList.add("snowflake");
+      flake.innerHTML = "❄";
+
+      // random size
+      const size = Math.random() * 15 + 10;
+      flake.style.fontSize = `${size}px`;
+
+      // random X position
+      flake.style.left = `${Math.random() * 100}%`;
+
+      // random Y starting ABOVE screen (never visible at top)
+      flake.style.top = `${Math.random() * -300 - 50}px`;
+
+      // animation duration
+      const duration = Math.random() * 2 + 2;
+      flake.style.animationDuration = `${duration}s`;
+
+      // staggered delay
+      const delay = Math.random() * 1;
+      flake.style.animationDelay = `${delay}s`;
+
+      flake.style.animationName = "fall";
+
+      snowContainer.appendChild(flake);
+    }
+  </script>
+
+</body>
+</html>

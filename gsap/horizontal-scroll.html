@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GSAP Horizontal Scroll Parallax</title>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial; }
+
+    /* ========================== */
+    /* Horizontal Scroll Setup    */
+    /* ========================== */
+    .horizontal-section {
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .horizontal-wrapper {
+      display: flex;
+      height: 100vh;
+    }
+
+    .panel {
+      height: 100vh; 
+      min-width: 100vw;
+      flex: 0 0 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    /* ========================== */
+    /* Parallax Layers            */
+    /* ========================== */
+    .layer {
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      top: -10%;
+      left: -10%;
+      background-size: cover;
+      background-position: center;
+      pointer-events: none;
+    } 
+
+    /* Different Layers per Panel */
+    
+    .panel-1 .back  { background-image: url("https://picsum.photos/id/1015/1600/900"); }
+    .panel-1 .mid   { background-image: url("https://picsum.photos/id/1039/1600/900"); }
+    .panel-1 .front { background-image: url("https://picsum.photos/id/1022/1600/900"); }
+
+    .panel-2 .back  { background-image: url("https://picsum.photos/id/1018/1600/900"); }
+    .panel-2 .mid   { background-image: url("https://picsum.photos/id/1025/1600/900"); }
+    .panel-2 .front { background-image: url("https://picsum.photos/id/1021/1600/900"); }
+
+    .panel-3 .back  { background-image: url("https://picsum.photos/id/1020/1600/900"); }
+    .panel-3 .mid   { background-image: url("https://picsum.photos/id/1023/1600/900"); }
+    .panel-3 .front { background-image: url("https://picsum.photos/id/1033/1600/900"); }
+
+    /* Panel Titles */
+    .panel-title {
+      position: relative;
+      z-index: 10;
+      text-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    }
+
+    /* After Section */
+    .after-section {
+      height: 100vh;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Horizontal Scroll Section -->
+  <section class="horizontal-section">
+    <div class="horizontal-wrapper">
+
+      <!-- Panel 1 -->
+      <div class="panel panel-1">
+        <div class="layer back"></div>
+        <div class="layer mid"></div>
+        <div class="layer front"></div>
+        <div class="panel-title">Panel 1</div>
+      </div>
+
+      <!-- Panel 2 -->
+      <div class="panel panel-2">
+        <div class="layer back"></div>
+        <div class="layer mid"></div>
+        <div class="layer front"></div>
+        <div class="panel-title">Panel 2</div>
+      </div>
+
+      <!-- Panel 3 -->
+      <div class="panel panel-3">
+        <div class="layer back"></div>
+        <div class="layer mid"></div>
+        <div class="layer front"></div>
+        <div class="panel-title">Panel 3</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Normal Section -->
+  <section class="after-section">
+    End of Horizontal Scroll
+  </section>
+
+  <!-- GSAP Script -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const sections = gsap.utils.toArray(".panel");
+
+    /* ========================== */
+    /* Horizontal Scroll Movement */
+    /* ========================== */
+    gsap.to(".horizontal-wrapper", {
+      x: () => -(sections.length - 1) * window.innerWidth,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".horizontal-section",
+        pin: true,
+        scrub: 1,
+        end: () => `+=${sections.length * window.innerWidth}`
+      }
+    });
+
+    /* ========================== */
+    /* Parallax Layer Animation   */
+    /* ========================== */
+    sections.forEach((panel, i) => {
+      let back  = panel.querySelector(".back");
+      let mid   = panel.querySelector(".mid");
+      let front = panel.querySelector(".front");
+
+      // Parallax Speed (smaller = slower)
+      gsap.to(back, {
+        x: -200,
+        ease: "none",
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: ScrollTrigger.getById("hscroll"),
+          scrub: true
+        }
+      });
+
+      gsap.to(mid, {
+        x: -350,
+        ease: "none",
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: ScrollTrigger.getById("hscroll"),
+          scrub: true
+        }
+      });
+
+      gsap.to(front, {
+        x: -500,
+        ease: "none",
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: ScrollTrigger.getById("hscroll"),
+          scrub: true
+        }
+      });
+    });
+
+  </script>
+
+</body>
+</html>

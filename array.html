@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array</title>
+  </head>
+  <body>
+    <h2>Array content</h2>
+    <script>
+      // Array of objects
+      let objArr = [
+        {
+          name: "john",
+          age: 12,
+          gender: "male",
+        },
+        {
+          name: "jane",
+          age: 15,
+          gender: "female",
+        },
+        {
+          name: "julie",
+          age: 20,
+          gender: "trans",
+        },
+      ];
+
+      console.log("Accessing the Array using the forEach loop:");
+      let nm,ag,gn;
+      objArr.map((item) => {
+        nm= item.name;
+        ag=item.age;
+        gn=item.gender; 
+        console.log(nm);
+      });
+      
+    </script>
+  </body>
+</html>

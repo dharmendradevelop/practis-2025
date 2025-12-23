@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Center Wave Hover Effect</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 40px;
+  }
+
+  .wave-hover {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #333;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .wave-hover span {
+    display: inline-block;
+    transition: color 0.5s ease; 
+    margin-right: 4px;
+  }
+
+  .wave-hover:hover span {
+    color: #967506;
+  }
+</style>
+</head>
+<body>
+
+<p class="wave-hover">
+  We perform thorough raw material testing, develop analytical methods, conduct stability tests.
+</p>
+
+<script>
+  const paragraph = document.querySelector('.wave-hover');
+  const words = paragraph.textContent.trim().split(/\s+/);
+  
+  // Wrap words in span
+  paragraph.innerHTML = words.map(word => `<span>${word}</span>`).join(' ');
+
+  const spans = paragraph.querySelectorAll('span');
+  const centerIndex = Math.floor(spans.length / 2);
+
+  spans.forEach((span, i) => {
+    // Calculate distance from center
+    const distance = Math.abs(i - centerIndex);
+    // Set transition delay proportional to distance
+    span.style.transitionDelay = `${distance * 0.2}s`;
+  });
+</script>
+
+</body>
+</html>

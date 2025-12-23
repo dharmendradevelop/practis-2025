@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Down window and section move left to right </title>
+</head>
+
+<style>
+
+.two-part-section {
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.left-part, .right-part {
+    flex: 1;
+    padding: 20px;
+    background: #f3f3f3;
+    border-radius: 8px;
+}
+.first{
+    height: 800px;
+}
+
+/* Mobile responsive */
+
+@media (max-width: 600px) {
+    .two-part-section {
+        flex-direction: column;
+    }
+}
+
+</style>
+
+<body>
+<section class="first">
+
+</section>
+
+<section class="two-part-section">
+
+    <div class="left-part">
+        <h2>Left Side Title</h2>
+        <p>
+            This is some sample text for the left side. 
+            You can add any description here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+
+        <img src="https://picsum.photos/id/1039/1600/900" alt="Left Image" style="width:100%; border-radius:10px; margin-top:10px;">
+
+        <ul>
+            <li>Feature one</li>
+            <li>Feature two</li>
+            <li>Feature three</li>
+        </ul>
+    </div>
+
+    <div class="right-part">
+        <h2>Right Side Title</h2>
+        <p>
+            This is the right side content block. 
+            You can add text, lists, or any element you want. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+
+        <img src="https://picsum.photos/id/1021/1600/900" alt="Right Image" style="width:100%; border-radius:10px; margin-top:10px;">
+
+        <p>
+            Another line of content to make the section look complete.
+        </p>
+    </div>
+        <div class="right-part">
+        <h2>Right Side Title</h2>
+        <p>
+            This is the right side content block. 
+            You can add text, lists, or any element you want. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+
+        <img src="https://picsum.photos/id/1039/1600/900" alt="Right Image" style="width:100%; border-radius:10px; margin-top:10px;">
+
+        <p>
+            Another line of content to make the section look complete.
+        </p>
+    </div>
+        <div class="right-part">
+        <h2>Right Side Title</h2>
+        <p>
+            This is the right side content block. 
+            You can add text, lists, or any element you want. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+
+        <img src="https://picsum.photos/id/1021/1600/900" alt="Right Image" style="width:100%; border-radius:10px; margin-top:10px;">
+
+        <p>
+            Another line of content to make the section look complete.
+        </p>
+    </div>
+     <div class="right-part">
+        <h2>Right Side Title</h2>
+        <p>
+            This is the right side content block. 
+            You can add text, lists, or any element you want. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+
+        <img src="https://picsum.photos/id/1039/1600/900" alt="Right Image" style="width:100%; border-radius:10px; margin-top:10px;">
+
+        <p>
+            Another line of content to make the section look complete.
+        </p>
+    </div>
+
+</section>
+
+<section class="first">
+
+</section>
+<section class="first">
+
+</section>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+  <script>
+
+gsap.registerPlugin(ScrollTrigger);
+
+// // Animate left part when scrolling down
+
+// gsap.from(".left-part", {
+//   x: -300,
+//   opacity: 0,
+//   duration: 1,
+//   scrollTrigger: {
+//     trigger: ".left-part",
+//     start: "top 75%",
+//     scrub: false  
+//   }
+// });
+
+// // Animate right part when scrolling down
+ 
+// gsap.from(".right-part h2", {
+// x: 100,
+//   opacity: 0,
+//   duration: 1,
+//   scrollTrigger: {
+//     trigger: ".right-part",
+//     start: "top 20%",
+//     markers: true,
+//      scrub: true
+//   }
+// });
+
+// Select all .right-part elements except the first two
+const animatedItems = document.querySelectorAll(".right-part:nth-of-type(n+3)");
+
+animatedItems.forEach((item) => {
+    console.log("test"+item);
+  gsap.from(item,{
+    x:850, 
+    opacity: 0,      
+    duration:5,
+    ease: "power2.out",
+
+    scrollTrigger: {
+      trigger: item,
+      start: "top 55%", 
+      end: "bottom 30%",
+    //   toggleActions: "play reverse play reverse",
+      markers: true,
+      scrub: true,
+    //   pin:true
+    }
+  });
+});
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation FROM</title>
+    <style>
+        body{
+            overflow-x: hidden;
+            background: #000;
+            margin: 0px;
+            padding: 0px;
+
+        }
+        .prtdiv{
+           background: rgba(255, 0, 0, 0);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+       .sec-1{
+        width: 100%;
+        padding: 20px;
+        height: 100vh;
+        background: oldlace;
+        color: black;
+        text-transform: uppercase;
+       }
+       .sec-2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+        height: 100vh;
+        background: rgb(65, 12, 61);
+        border-top: 2px double #fff;
+        
+       }
+       .box-ef{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+       }
+       .tp{
+        height: 150px;
+        text-align: center;
+        color: #fff;
+       }
+    </style>
+</head>
+<body>
+    <div class="prtdiv">
+        <h1 class="tp">Section Top</h1>
+<section class="sec-1">
+    <h2>Scroll Animation</h2>
+</section>
+<section class="sec-2">
+    <div class="box-ef"></div>
+</section>
+    </div>
+   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+
+<script>
+//  gsap.registerPlugin(ScrollTrigger) 
+  gsap.to("body .sec-1 h2", {
+    x:'300px',
+     duration: 3,
+     delay:1,
+     scrollTrigger:'body .sec-1'
+     });
+
+    gsap.to(".sec-2 .box-ef", {
+    scale:1.5,
+    duration:1.5,
+    delay:1,
+    backgroundColor:'#eee',
+    scrollTrigger:{
+        trigger:'.sec-2',
+        scroller:'body',
+        markers:true,
+        start:'top 50%'
+
+    }
+     });
+
+</script>
+</body>
+</html>

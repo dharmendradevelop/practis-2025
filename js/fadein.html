@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Accordion with GSAP</title>
+  <style>
+    .accordion-item {
+      border-bottom: 1px solid #ccc;
+    }
+    .accordion-header {
+      padding: 15px;
+      cursor: pointer;
+      background: #eee;
+    }
+.accordion-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+}
+  </style>
+</head>
+<body>
+
+<div class="accordion">
+  <div class="accordion-item">
+    <div class="accordion-header">Item 1</div>
+    <div class="accordion-content">Content for Item 1</div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-header">Item 2</div>
+    <div class="accordion-content">Content for Item 2</div>
+  </div>
+</div>
+
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  const headers = document.querySelectorAll(".accordion-header");
+
+  headers.forEach(header => {
+    header.addEventListener("click", () => {
+      const content = header.nextElementSibling;
+      // Close all others
+      document.querySelectorAll(".accordion-content").forEach(otherContent => {
+        if (otherContent !== content) {
+          gsap.to(otherContent, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+            otherContent.style.display = "none";
+          }});
+        }
+      });
+
+      if (content.style.display === "block") {
+        gsap.to(content, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+          content.style.display = "none";
+        }});
+      } else {
+        content.style.display = "block";
+        gsap.fromTo(content,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+        );
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

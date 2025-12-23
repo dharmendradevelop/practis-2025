@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+ul li{
+    color: bisque;
+}
+ul li span{
+    color: blueviolet;
+}
+.forminator-select.forminator-select-dropdown-container--open .forminator-select-dropdown.forminator-dropdown--default .select2-results .select2-results__options .select2-results__option {
+    padding: unset !important;
+    padding-left: 15px !important;
+    font-size: 22px !important;
+}
+</style>
+</head>
+<body>
+ <ul id="menu">
+ <span>Just checking about tag</span>
+  <li>Home</li>
+  <li>About <span>hwle</span></li>
+  <li>Contact<b> Hold </b> <span> Text </span></li> 
+</ul> 
+<p class="cls"> Click </p> 
+
+<div class="wrapper">
+  <p class="para">
+    <div class="prt">
+    <span id="mySpan"></span>
+    </div>
+  </p>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+ 
+<script>
+const span = document.getElementById("mySpan");
+console.log("parentNode:", span.parentNode);
+console.log("parentElement:", span.parentElement);
+document.querySelector("html").setAttribute("id","ghr");
+var sv=document.querySelector("html").attributes;
+Array.from(sv).forEach((item, i) => {
+    console.log(i + " " + item.name);
+});
+
+document.querySelector(".cls").addEventListener("mouseover",()=>{
+   document.querySelector(".cls").remove(); 
+});
+// $(document).ready( function(){
+// $(".cls").on("click", function(){
+//     $("#menu").children().children().find("span").css("color", "orange");
+// });
+// }); 
+
+
+// document.getElementById("cutInput").addEventListener("copy", function () {
+// console.log("User copy text!");
+// });
+const spans = document.querySelectorAll("#menu span");
+// console.log("check"+ spans );
+
+spans.forEach(function(span) {
+    if (span.closest("b")) {
+        span.style.color = "red";
+    }
+});
+
+</script>
+</body>
+</html>

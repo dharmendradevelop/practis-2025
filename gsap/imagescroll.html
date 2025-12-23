@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Scroll Trigger </title>
+    <style>
+        .grid-container {
+    padding: 50vh 0;
+  }
+
+p {
+  margin: 0;
+}
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    background-color: red;
+    padding-bottom: calc(100% / (var(--ratio)));          
+  }
+
+  
+  .cell + .cell {
+    margin-top: 20vh;
+  }
+  
+  .image-one {
+    --ratio: 400/400;
+  }
+  
+  .image-two {
+    --ratio: 1920/1080;
+  }
+  
+  .image-three {
+    --ratio: 1080/1920;
+  }
+  
+  .image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-x align-center">
+          <div class="cell large-2">
+            <p>Some text</p>
+            <div class="image-container image-one">
+              <img src="https://picsum.photos/400/400">
+            </div>
+          </div>
+          <div class="cell large-11">
+            <div class="image-container image-two">
+              <img src="https://picsum.photos/1920/1080">
+            </div>
+          </div>
+          <div class="cell large-4">
+            <div class="image-container image-three">
+              <img src="https://picsum.photos/1080/1920">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script> 
+       <script>
+        // gsap.registerPlugin(ScrollTrigger);  
+
+gsap.utils.toArray(".image-container").forEach(function(container) {
+    let image = container.querySelector("img");
+  
+    let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          scrub: true,
+          pin: false,
+        },
+      }); 
+      tl.from(image, {
+        yPercent: -30,
+        ease: "none",
+      }).to(image, {
+        yPercent: 30,
+        ease: "none",
+      }); 
+  });
+
+       </script>         
+</body>
+</html>

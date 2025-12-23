@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Keys</title>
+</head>
+<body>
+<section class="sect">
+    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quaerat repellendus eveniet obcaecati voluptate nisi veniam omnis rem facere reiciendis?</h2>
+    <div id="doms">
+        <h1 class="h_1">
+            <span><b>Lorem</b> ipsum dolor sit amet consectetur adipisicing elit. Beatae, quasi labore sit dolorum repudiandae quas architecto praesentium eveniet at quos rerum ut officiis, iste corporis earum! Recusandae cum officia totam earum ab! Accusamus dignissimos repellat deleniti vel saepe laboriosam rem, nostrum sunt fugiat nulla aut, reprehenderit natus voluptatem! Quis, cum? Veniam eum magnam magni iure dolor animi natus odit ut hic neque cupiditate sed, id amet, inventore commodi mollitia. Blanditiis sunt tempora sapiente debitis sit voluptatum? Exercitationem, magni animi dignissimos voluptas sequi natus, voluptates ex ab iure expedita accusantium officia obcaecati veritatis molestiae? Dicta quasi in, mollitia et expedita nemo?</span>
+        </h1>
+    </div>
+</section> 
+<script>
+    let slct_tag_name=document.getElementsByTagName('span')[0].innerText; // get text by tag name
+    let slct_id=document.getElementById("doms").outerText;// innerText,innerHTML and textContent
+    console.log("Dy : " + slct_id);
+</script>   
+</body>
+</html>

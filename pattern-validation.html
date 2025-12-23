@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple JS Form Validation</title>
+</head>
+<body>
+
+<h2>Simple Form Validation (JavaScript)</h2>
+
+<form id="myForm">
+  <label>First Name (only letters):</label><br>
+  <input type="text" id="fname"><br><br>
+
+  <label>Full Name (letters + spaces):</label><br>
+  <input type="text" id="fullname"><br><br>
+
+  <label>Email:</label><br>
+  <input type="text" id="email"><br><br>
+
+  <label>Phone (10 digits):</label><br>
+  <input type="text" id="phone"><br><br>
+
+  <label>Password (1 uppercase, 1 number, min 6 chars):</label><br>
+  <input type="password" id="password"><br><br>
+
+  <label>PIN Code (6 digits):</label><br>
+  <input type="text" id="pincode" maxlength="6"><br><br>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  // get values
+  let fname = document.getElementById("fname").value;
+  let fullname = document.getElementById("fullname").value;
+  let email = document.getElementById("email").value;
+  let phone = document.getElementById("phone").value;
+  let password = document.getElementById("password").value;
+  let pincode = document.getElementById("pincode").value;
+  // define patterns
+  let namePattern = /^[A-Za-z]+$/;
+  let fullNamePattern = /^[A-Za-z ]+$/;
+  let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+  let phonePattern = /^\d{10}$/;
+  let passwordPattern = /^(?=.*\d)(?=.*[A-Z]).{6,}$/;
+  let pinPattern = /^\d{6}$/;
+
+  // check all
+  if (!namePattern.test(fname)) {
+    alert("❌ First name: Only letters allowed");
+  } 
+  else if (!fullNamePattern.test(fullname)) {
+    alert("❌ Full name: Only letters and spaces allowed");
+  } 
+  else if (!emailPattern.test(email)) {
+    alert("❌ Invalid email address");
+  } 
+  else if (!phonePattern.test(phone)) {
+    alert("❌ Phone must be 10 digits");
+  } 
+  else if (!passwordPattern.test(password)) {
+    alert("❌ Password must contain 1 uppercase, 1 number, min 6 characters");
+  } 
+  else if (!pinPattern.test(pincode)) {
+    alert("❌ PIN must be 6 digits");
+  } 
+  else {
+    alert("✅ All fields are valid!");
+    this.reset();
+  }
+});
+</script>
+
+</body>
+</html>

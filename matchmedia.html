@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>matchMedia Example</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 40px;
+  }
+
+  #box {
+    background: #0077e3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    width: 300px;
+    margin: 0 auto;
+    transition: opacity 0.5s ease;
+  }
+</style>
+</head>
+<body>
+<p id="para">Select any part of this text erer857n   556% 49 and click the button.</p>
+<button id="btn">Get Selected Text</button>
+
+<script>
+const btn = document.getElementById("btn");
+
+btn.addEventListener("click", () => {
+  const selectedText = window.getSelection().toString().length;
+  alert("You Selected: " + selectedText);
+  let style = window.getComputedStyle(btn);
+  const currentPadding = parseInt(style.padding);
+  btn.style.padding = (currentPadding + selectedLength) + "px";
+});
+</script>
+
+<h2>Resize your browser to see the effect 👇</h2>
+<div id="box">This box hides on small screens (below 600px)</div>
+
+<script>
+  const box = document.getElementById("box");
+  const mediaQuery = window.matchMedia("(max-width: 600px)");
+
+  function handleScreenChange(e) {
+    if (e.matches) {
+      // If screen width ≤ 600px
+      box.style.cssText =` background:#FF9800;`
+      box.style.pointerEvents = "none";
+    } else {
+      // If screen width > 600px
+      box.style.opacity = "1";
+      box.style.pointerEvents = "auto";
+     box.append(" This is new text.");
+     const textNode = document.createTextNode("Start Tex");
+     console.log(textNode);
+    }
+  }
+
+  // Initial check
+  handleScreenChange(mediaQuery);
+
+  // Listen for changes
+  mediaQuery.addEventListener("change", handleScreenChange);
+
+function textChange(){
+ let h2=document.getElementsByTagName("h2")[0];  
+h2.style.color = "#8546d5";
+ console.log("changed") ;
+}
+box.addEventListener("mouseover", textChange);
+
+</script>
+
+</body>
+</html>

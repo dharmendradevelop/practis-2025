@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>box</title>
+    <style>
+        #prt-box{
+            width: 120px;
+            height: 120px;
+            border: 4px solid rgb(184, 70, 173);
+        }
+        .prt-box-child{
+            width: 80px;
+            height: 80px;
+            border: 4px solid green;
+        }
+        .d-flex{
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="d-flex">
+        <div id="prt-box">
+        <div class="prt-box-child">
+        <b>sss</b>
+        </div>
+    </div>
+    <div id="prt-2-box">
+        
+    </div>
+</div>
+    <script>
+      
+          setInterval(function(){
+              var d=document.querySelector('#prt-box').innerHTML;
+         let f=document.getElementById("prt-2-box").innerHTML=d;
+         document.querySelector('#prt-box').innerHTML="";
+          
+  
+          let movedElement = document.querySelector('#prt-2-box .prt-box-child');
+         
+         setTimeout(
+            function(){
+              movedElement.style.borderRadius = "50px";
+            movedElement.style.border = "2px solid black";
+            },5000);
+
+          },10000);
+        console.log("Test= "+ d);
+    </script>
+</body>
+</html>
